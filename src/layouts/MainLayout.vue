@@ -1,19 +1,24 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+  <q-layout view="hHh lpR fFf">
+
+    <q-header elevated class="bg-primary text-white">
       <q-toolbar>
-        <q-btn flat dense round icon="menu" aria-label="Menu" @click="dawerLateral = !dawerLateral" />
+        <q-btn dense flat round icon="menu" @click="left = !left" />
 
         <q-toolbar-title>
-          Pirzoid PWA 
+          <q-avatar>
+            <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg">
+          </q-avatar>
+          Prizoid - PWA
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <q-btn dense flat round icon="menu" @click="right = !right" />
       </q-toolbar>
     </q-header>
 
-    <q-drawer v-model="dawerLateral" show-if-above bordered content-class="bg-grey-1" >
 
+    <!-- dawer menu -->
+    <q-drawer show-if-above v-model="left" side="left" :breakpoint="500" overlay bordered content-class="bg-grey-3" >
       <q-list>
         <q-item-label header class="text-grey-8" >
           Menu principal
@@ -26,16 +31,27 @@
           <q-item-section>{{data.title}}</q-item-section>
         </q-item>
       </q-list>
+     </q-drawer>
 
-
+    <!-- dawer usuario -->
+    <q-drawer show-if-above v-model="right" side="right" :breakpoint="500" overlay bordered content-class="bg-grey-3">
+        <q-img class="absolute-top" src="https://cdn.quasar.dev/img/material.png" style="height: 150px">
+          <div class="absolute-bottom bg-transparent">
+            <q-avatar size="56px" class="q-mb-sm">
+              <img src="https://cdn.quasar.dev/img/boy-avatar.png">
+            </q-avatar>
+            <div class="text-weight-bold">Razvan Stoenescu</div>
+            <div>@rstoenescu</div>
+          </div>
+        </q-img>
     </q-drawer>
 
     <q-page-container>
       <router-view />
     </q-page-container>
+
   </q-layout>
 </template>
-
 <script>
 // import EssentialLink from 'components/EssentialLink'
 
@@ -48,7 +64,8 @@ export default {
 
   data () {
     return {
-      dawerLateral: false,
+      left: true,
+      right: false,
       listaMenu: [
         {
           title: 'Menu 1',

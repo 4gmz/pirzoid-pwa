@@ -1,5 +1,8 @@
 <template>
   <div class="q-pa-md">
+    <div class="q-mb-md">
+    <q-btn @click="mostrarNotificacion" color="primary" label="Mostrar notificación" />
+  </div>
     <q-table title="Tabla de pruebas" :data="data" :columns="columns" row-key="id" :pagination.sync="pagination" :loading="loading" :filter="filter" @request="onRequest" binary-state-sort >
       <template v-slot:top-right>
         <q-input borderless dense debounce="300" v-model="filter" placeholder="BUSCAR">
@@ -87,7 +90,8 @@ export default {
     })
   },
   methods: {
-    onRequest (props) {
+    onRequest (props) 
+    {
       const { page, rowsPerPage, sortBy, descending } = props.pagination
       const filter = props.filter
 
@@ -123,7 +127,8 @@ export default {
 
     // emulate ajax call
     // SELECT * FROM ... WHERE...LIMIT...
-    fetchFromServer (startRow, count, filter, sortBy, descending) {
+    fetchFromServer (startRow, count, filter, sortBy, descending) 
+    {
       const data = filter
         ? this.original.filter(row => row.name.toLowerCase().includes(filter.toLowerCase()))
         // tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))
@@ -147,7 +152,8 @@ export default {
     },
 
     // emulate 'SELECT count(*) FROM ...WHERE...'
-    getRowsNumberCount (filter) {
+    getRowsNumberCount (filter) 
+    {
       if (!filter) {
         return this.original.length
       }
@@ -158,7 +164,19 @@ export default {
         }
       })
       return count
+    },
+
+    mostrarNotificacion () 
+    {
+      this.$q.notify({
+        type: 'positive',
+        message: `This is a "positive" type notification.`,
+        position: 'top-right',
+        textColor: 'white',
+        actions: [{ icon: 'close', color: 'white' }]
+      })
     }
+
   }
 }
 </script>

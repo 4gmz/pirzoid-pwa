@@ -48,7 +48,7 @@ module.exports = function (ctx) {
       directives: [],
 
       // Quasar plugins
-      plugins: []
+      plugins: ['Notify', 'BottomSheet']
     },
 
     // https://quasar.dev/quasar-cli/cli-documentation/supporting-ie
@@ -98,7 +98,7 @@ module.exports = function (ctx) {
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',
-        theme_color: '#1a4f7c',
+        theme_color: '#0b204b',
         icons: [
           {
             src: 'statics/icons/icon-128x128.png',
